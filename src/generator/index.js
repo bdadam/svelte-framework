@@ -11,7 +11,7 @@ const clientCompiler = webpack({
     ...configs[0],
 }).watch({}, (err, stats) => {
     // console.log(stats.toString({ colors: true, modules: false, entrypoints: false, hash: false, builtAt: false }));
-    if (err) {
+    if (stats.compilation.errors.length > 0) {
         console.log(stats.toString({ colors: true, modules: false, entrypoints: false, hash: false, builtAt: false }));
         return;
     }
