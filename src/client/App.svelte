@@ -12,9 +12,3 @@
     <Route path="/" component={Home} />
     <Route path="/about" component={About} />
 </Router>
-
-<!-- {#if url === '/'}
-    <Home />
-{:else if url === '/about'}
-    <About />
-{/if} -->

@@ -5,8 +5,9 @@
     export let url;
 
     const path = url.split('?')[0];
+    const search = url.split('?')[1] || '';
 
-    const router = writable({ url, path });
+    const router = writable({ url, path, search });
 
     setContext('router', router);
 
@@ -24,17 +25,16 @@
 
             const href = a.pathname + a.search;
 
-            console.log(a.pathname, a.search);
-            // console.log(href);
-
-            router.set({ url: href, path: a.pathname });
-
-            console.log(href);
-            history.pushState(null, null, a.pathname + a.search);
+            router.set({ url: href, path: a.pathname, search: a.search });
+            history.pushState(null, null, href);
         };
 
         popstateHandler = () => {
-            router.set({ url: window.location.pathname + window.location.search, path: location.pathname });
+            router.set({
+                url: window.location.pathname + window.location.search,
+                path: location.pathname,
+                search: location.search,
+            });
         };
 
         window.addEventListener('click', clickHandler);
